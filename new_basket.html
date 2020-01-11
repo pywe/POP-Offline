@@ -1,691 +1,849 @@
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <meta charset="UTF-8" />
-        <title>POP|Ghana</title>
-                <!-- Bootstrap -->
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="css/bootstrap-modal.css">
-        <link rel="stylesheet" href="css/select2.css">
-        <!-- <link rel="stylesheet" href="css/font-awesome.min.css">    -->
-    </head>
-    <body>
-        <div class="container">
-  
-            <div class="content row new_basket" id="new_basket">
+    <title>POP|Ghana</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="css/bootstrap-modal.css">
+    <link rel="stylesheet" href="css/select2.css">
+    <!-- <link rel="stylesheet" href="css/font-awesome.min.css">    -->
+</head>
 
-                <form action="" method="post" id="formBasket">
-    <input type="hidden" name="session" app-variable="session-id" value="" />
-    <input type="hidden" name="campaign" app-variable="campaign-id" value ="" />
-    <input type="hidden" name="basket" id="basket" app-variable="basket-number" value ="" />
-    <input type="hidden" name="numberOfItems" id="numberOfItems" value ="" />
-    <div class="span12">
-        <div class="row" style="padding-top:33px">
-            <div class="span6">               
-                <ul class="breadcrumb">
-                    <li><a href="observation_session.html"><span id="global_name" app-variable="campaign-name-pretty"></span></a><span class="divider">/</span></li>
-                    <li><span id="global_name" app-variable="session-name-pretty"></span><span class="divider">/</span></li>
-                    <li>Patient <span id="global_name" app-variable="basket-number"></li>
-                </ul>
+<body>
+    <div class="container">
+
+
+        <form class="form-horizontal" action="new_basket.html" method="post" id="basket_form">
+            <input type="hidden" name="session" app-variable="session-id" value="" />
+            <input type="hidden" name="campaign" app-variable="campaign-id" value="" />
+            <input type="hidden" name="basket" id="basket" app-variable="basket-number" value="" />
+            <input type="hidden" name="numberOfItems" id="numberOfItems" value="" />
+            <div class="span12">
+                <div class="row" style="padding-top:33px">
+                    <div class="span6">
+                        <ul class="breadcrumb">
+                            <li><a href="observation_session.html"><span id="global_name"
+                                        app-variable="campaign-name-pretty"></span></a><span class="divider">/</span>
+                            </li>
+                            <li><span id="global_name" app-variable="session-name-pretty"></span><span
+                                    class="divider">/</span></li>
+                            <li>Patient <span id="global_name" app-variable="basket-number"></li>
+                        </ul>
+                    </div>
+                    <div class="span6">
+                        <a class="pull-right btn addColumn"><i class="icon-plus-sign"></i><u>A</u>dd Column</a>
+                        <a class="pull-right btn btn-info addParapharma" style="margin-right:10px"><i
+                                class="icon-plus-sign icon-white"></i><u>P</u>arapharma</a>
+                        <a class="pull-right btn btn-info addReference" style="margin-right:10px"><i
+                                class="icon-plus-sign icon-white"></i><u>R</u>eference</a>
+                        <a class="pull-right btn btn-primary togglePatientData" style="margin-right:10px"><i
+                                class="icon-resize-small icon-white"></i>Show / Hide Patient</a>
+                        <a class="pull-right btn editPharmacy" href="#" style="margin-right:10px"><i
+                                class="icon-edit"></i>Pharmacy</a>
+                    </div>
+                </div>
             </div>
-            <div class="span6">
-                <a class="pull-right btn addColumn"><i class="icon-plus-sign"></i><u>A</u>dd Column</a>
-                <a class="pull-right btn btn-info addParapharma" style="margin-right:10px"><i class="icon-plus-sign icon-white"></i><u>P</u>arapharma</a>
-                <a class="pull-right btn btn-info addReference" style="margin-right:10px"><i class="icon-plus-sign icon-white"></i><u>R</u>eference</a>
-                <a class="pull-right btn btn-primary togglePatientData" style="margin-right:10px"><i class="icon-resize-small icon-white"></i>Show / Hide Patient</a>
-                <a class="pull-right btn editPharmacy" href="#" style="margin-right:10px"><i class="icon-edit"></i>Pharmacy</a>
+            <h2>Patient</h2>
+            <div class="form-horizontal" id="newBasket" action="new_basket.html" method="get">
+                <input type="hidden" name="campaign" value="" app-variable="campaign-id" />
+                <div class="control-group">
+                    <label class="control-label" for="insurance_scheme">Insurance scheme</label>
+                    <div class="controls">
+                        <select name="insurance_scheme" required>
+                            <option value="" selected>---------</option>
+
+                            <option value="Private Insurance">Private Insurance</option>
+
+                            <option value="Public Insurance">Public Insurance</option>
+
+                            <option value="No Insurance">No Insurance</option>
+
+                            <option value="Undetermined">Undetermined</option>
+
+                        </select>
+
+
+                    </div>
+
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="patient_age">Age</label>
+                    <div class="controls">
+                        <input id="patient_age" type="number" value="1" required class="form-control">
+                    </div>
+
+                </div>
+
+
+                <div class="control-group">
+                    <label class="control-label" for="patient_gender">Gender</label>
+                    <div class="controls">
+                        <select name="patient_gender" id="patient_gender" required>
+                            <option value="" selected>---------</option>
+
+                            <option value="Male">Male</option>
+
+                            <option value="Female">Female</option>
+
+                            <option value="Other">Other</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+            <h2>Drugs</h2>
+            <div class="control-group">
+                <label class="control-label" for="drug_initial_request">Initial request
+                &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10" alt="(Who started the request?)" title="Who started the request?"></label>
+                <div class="controls">
+                    <select name="drug_initial_request" id="drug_initial_request" required>
+                        <option value="" selected>---------</option>
+
+                        <option value="brand patient">brand patient</option>
+
+                        <option value="brand prescription">brand prescription</option>
+
+                        <option value="inn patient">inn patient</option>
+
+                        <option value="inn prescription">inn prescription</option>
+
+                    </select>
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_sold">Drug sold
+                    &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10" alt="(brand name of drug that has been sold?)" title="brand name of drug that has been sold?"></label>
+                <div class="controls">
+                    <input type="text" name="drug_sold" class="form-control" maxlength="200" id="drug_sold">
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_sale_driver">&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10" alt="(Who makes the final selection for the purchased product?)" title="Who makes the final selection for the purchased product?"></label>
+                <div class="controls">
+                    <select name="drug_sale_driver" id="drug_sale_driver">
+                        <option value="" selected>---------</option>
+
+                        <option value="Patient">Patient</option>
+
+                        <option value="Pharmacist">Pharmacist</option>
+
+                        <option value="Prescriber">Prescriber</option>
+
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_switched">Switched
+                    &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10" alt="(Was there a switch?)" title="Was there a switch?"></label>
+                <div class="controls">
+                    <input type="checkbox" name="drug_switched" id="drug_switched">
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_switched">Leaked&nbsp;<img src="images/icon-unknown.svg"
+                        class="help help-tooltip" width="10" height="10" alt="(Was there a leak?)"
+                        title="Was there a leak?">
+                </label>
+                <div class="controls">
+                    <input type="checkbox" name="drug_leaked" id="drug_leaked">
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_product_switched_or_leaked">Product switched or leaked
+                    &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10"
+                        alt="(What product was switched or leaked?)"
+                        title="What product was switched or leaked?"></label>
+                <div class="controls">
+                    <input type="text" name="drug_product_switched_or_leaked" class="form-control" maxlength="200"
+                        id="drug_product_switched_or_leaked">
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="reason_for_switch_or_leak">Reason for switch or leak
+                    &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10"
+                        alt="(Why was there a switch or a leak?)" title="Why was there a switch or a leak?"></label>
+                <div class="controls">
+                    <select name="reason_for_switch_or_leak" id="reason_for_switch_or_leak">
+                        <option value="" selected>---------</option>
+
+                        <option value="Not available">Not available</option>
+
+                        <option value="Price">Price</option>
+
+                        <option value="Therapeutic Reason">Therapeutic Reason</option>
+
+                        <option value="Other Reason">Other Reason</option>
+
+                    </select>
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_form_sold">Form sold
+                    &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10" alt="(What form of drug was sold? liquid,tablet)" title="What form of drug was sold? liquid,tablet"></label>
+                <div class="controls">
+                    <select name="drug_form_sold" id="drug_form_sold">
+                        <option value="" selected>---------</option>
+
+                        <option value="3">Capsule</option>
+
+                        <option value="7">Cream</option>
+
+                        <option value="14">Ear drop</option>
+
+                        <option value="15">Eye drop</option>
+
+                        <option value="9">Gel</option>
+
+                        <option value="12">Inhaler</option>
+
+                        <option value="6">Injection</option>
+
+                        <option value="8">Ointment</option>
+
+                        <option value="10">Patch</option>
+
+                        <option value="13">Pessary</option>
+
+                        <option value="16">Powder</option>
+
+                        <option value="11">Spray</option>
+
+                        <option value="1">Suppositories</option>
+
+                        <option value="4">Suspension</option>
+
+                        <option value="5">Syrup</option>
+
+                        <option value="2">Tablet</option>
+
+                    </select>
+
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="drug_division">Division
+                    &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10" alt="(Was the whole box sold? How was it divided?)" title="Was the whole box sold? How was it divided?"></label>
+                <div class="controls">
+                    <select name="drug_division" id="drug_division">
+                        <option value="" selected>---------</option>
+
+                        <option value="unit">unit</option>
+
+                        <option value="blister">blister</option>
+
+                        <option value="box">box</option>
+
+                        <option value="blister+unit">blister+unit</option>
+
+                        <option value="box+unit">box+unit</option>
+
+                        <option value="box+blister">box+blister</option>
+
+                    </select>
+
+                </div>
+            </div>
+
+
+        </form>
+        <div class="span12">
+            <div class="form-actions">
+                <a class="btn" id="selectOldBasket"><i class="icon-edit"></i><u>M</u>odify a basket</a>
+                <a class="btn" id="reviewReferences"><i class="icon-list-alt"></i>Reference to be completed</a>
+                <button type="submit" class="btn btn-success" id="saveBasket"><i
+                        class="icon-download-alt icon-white"></i><u>S</u>ave basket</button>
+                <a class="btn btn-primary pull-right" id="closeSession"><i class="icon-stop icon-white"></i><u>C</u>lose
+                    session</a>
+            </div>
+        </div>
+        </form>
+
+        <div id="footer">
+            <div class="span3">
+                <a href="campaign_list.html"><img src="images/logo.svg" width="50px" height="50px" /></a>
+            </div>
+        </div>
+
+        <div class="span3 prescriptionModel" id="basket_2" style="display:none">
+        </div>
+
+
+        <div class="modal hide fade" id="modal-basket">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Select a previous Basket</h3>
+            </div>
+            <div class="modal-body">
+                <select name="previousBasket" id="previousBasket" class="input-xxlarge">
+                </select>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" id="reloadOldBasket">select</a>
+            </div>
+        </div>
+
+        <div class="modal hide fade" id="modal-patient">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">You might have a problem</h3>
+            </div>
+            <div class="modal-body">
+                You have not completed Patient Data
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn">Close</button>
+            </div>
+        </div>
+
+        <div class="modal hide container" id="modal-reference">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Add a reference</h3>
+            </div>
+            <div class="modal-body">
+                <form id="formNewReference"></form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary saveCompleted" data-form-id="formNewReference">Save completed</a>
+                <a class="btn btn-info saveToBeCompleted" data-form-id="formNewReference">Save to be completed</a>
+            </div>
+        </div>
+
+        <div class="modal hide container" id="modal-parapharma">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Add a Parapharmacy product</h3>
+            </div>
+            <div class="modal-body">
+                <form id="formNewParapharmacy"></form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary saveParapharma" data-form-id="formNewParapharmacy">Save</a>
+            </div>
+        </div>
+
+
+        <div class="modal container hide fade" id="modal-review-reference">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Reference to be completed</h3>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <span>How many hours did you work for this session?</span>&nbsp;&nbsp;&nbsp;
+                <select id="select2me"></span>
+                    <option value="0">00</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select><br /><br />
+                <div id="closeSessionButtons" style="display:none">
+                    <!-- <a class="btn" >Close session and send</a> -->
+                    All new references must be completed before closing a session
+                    <a class="btn btn-info" style="margin-right:10px" href="observation_session.html"><i
+                            class="icon-pause icon-white"></i>Pause session</a>
+                    <a class="btn btn-primary closeSession"><i class="icon-stop icon-white"></i>Close session</a>
                 </div>
             </div>
         </div>
-        <div class="blockPatient">
-            <h2>Patient data</h2>
-            <div id="patientData" ></div>
-            <div style="clear:both"></div>
-            <h2>Basket</h2>
-        </div>
 
-        <div class="_row" >
-            <div class="span3" id="basket_1">
-            </div>
-            <div class="span9 prescription">
-                <div class="row">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="span12">
-        <div class="form-actions">
-            <a class="btn" id="selectOldBasket"><i class="icon-edit"></i><u>M</u>odify a basket</a>
-            <a class="btn" id="reviewReferences"><i class="icon-list-alt"></i>Reference to be completed</a>
-            <button type="submit" class="btn btn-success" id="saveBasket"><i class="icon-download-alt icon-white"></i><u>S</u>ave basket</button>
-            <a class="btn btn-primary pull-right" id="closeSession"><i class="icon-stop icon-white"></i><u>C</u>lose session</a>
-        </div>
-    </div>
-</form>
+        <style>
+            .table td {
+                height: 40px;
+                vertical-align: middle;
+                line-height: 40px;
+            }
 
-<div id="footer">
-    <div class="span3">
-        <a href="campaign_list.html"><img src="images/logo.svg" width="50px" height="50px"/></a>
-    </div>
-</div>
-                
-<div class="span3 prescriptionModel" id="basket_2" style="display:none">
-</div>
+            select,
+            .table select {
+                margin-bottom: 0px;
+            }
 
+            .duplicable {
+                display: none;
+            }
 
-<div class="modal hide fade" id="modal-basket">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title">Select a previous Basket</h3>
-  </div>
-  <div class="modal-body">
-    <select name="previousBasket" id="previousBasket" class="input-xxlarge">
-    </select>
-  </div>
-  <div class="modal-footer">
-  <a class="btn btn-primary" id="reloadOldBasket">select</a>
-  </div>
-</div>
+            div.prescription {
+                overflow-x: auto;
+                white-space: nowrap;
+                margin-left: 0px;
+            }
 
-<div class="modal hide fade" id="modal-patient">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title">You might have a problem</h3>
-  </div>
-  <div class="modal-body">
-    You have not completed Patient Data
-  </div>
-  <div class="modal-footer">
-    <button data-dismiss="modal" class="btn">Close</button>
-  </div>
-</div>
+            div.prescription [class*="span"] {
+                display: inline-block;
+                float: none;
+                /* Very important */
+            }
 
-<div class="modal hide container" id="modal-reference">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title">Add a reference</h3>
-  </div>
-  <div class="modal-body">
-    <form id="formNewReference"></form>
-  </div>
-  <div class="modal-footer">
-  <a class="btn btn-primary saveCompleted" data-form-id="formNewReference">Save completed</a>
-  <a class="btn btn-info saveToBeCompleted" data-form-id="formNewReference">Save to be completed</a>
-  </div>
-</div>
+            .prescription td {
+                text-align: center;
+            }
 
-<div class="modal hide container" id="modal-parapharma">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title">Add a Parapharmacy product</h3>
-  </div>
-  <div class="modal-body">
-    <form id="formNewParapharmacy"></form>
-  </div>
-  <div class="modal-footer">
-  <a class="btn btn-primary saveParapharma" data-form-id="formNewParapharmacy">Save</a>
-  </div>
-</div>
-
-
-<div class="modal container hide fade" id="modal-review-reference">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title">Reference to be completed</h3>
-  </div>
-  <div class="modal-body">
-
-
-  </div>
-  <div class="modal-footer">
-      <span>How many hours did you work for this session?</span>&nbsp;&nbsp;&nbsp;
-    <select id="select2me"></span>
-     <option value="0">00</option>
-     <option value="1">01</option>
-     <option value="2">02</option>
-     <option value="3">03</option>
-     <option value="4">04</option>
-     <option value="5">05</option>
-     <option value="6">06</option>
-     <option value="7">07</option>
-     <option value="8">08</option>
-     <option value="9">09</option>
-     <option value="10">10</option>
-     <option value="11">11</option>
-     <option value="12">12</option>
-     </select><br /><br />
-    <div id="closeSessionButtons" style="display:none">
-        <!-- <a class="btn" >Close session and send</a> -->
-        All new references must be completed before closing a session
-        <a class="btn btn-info" style="margin-right:10px" href="observation_session.html"><i class="icon-pause icon-white"></i>Pause session</a>
-        <a class="btn btn-primary closeSession" ><i class="icon-stop icon-white"></i>Close session</a>
-    </div>
-  </div>
-</div>
-
-<style>
-.table td {
-    height:40px;
-    vertical-align:middle;
-    line-height:40px;
-}
-
-select, .table select {
-margin-bottom:0px;
-}
-
-.duplicable {
-display:none;
-}
-
-div.prescription {
-    overflow-x: auto;
-    white-space: nowrap;
-    margin-left:0px;
-}
-div.prescription [class*="span"] {
-    display: inline-block;
-    float: none; /* Very important */
-}
-.prescription td {
-text-align:center;
-}
-
-/*
+            /*
 .span3 {
     width:300px;
     margin-left:0px;
 }
 */
+        </style>
 
 
-</style>
+    </div>
+    </div>
+    <script src="scripts/bootstrap.min.js"></script>
+    <script src="scripts/jquery-2.2.1.min.js"></script>
 
 
-            </div>
-        </div>
-        <script src="scripts/bootstrap.min.js"></script>
-        <script src="scripts/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript">
 
-        
-<script type="text/javascript">
- 
-jQuery(document).ready(function()
-{
-    Sanisphere.Model.Pharmacy.setId(null);
-    // Sanisphere.isConnected(function(status)
-    // {
-    //     if (status) {
-    //         Sanisphere.loggedIn();
-    //         Sanisphere.Model.Basket.params(function(params)
-    //         {
-    //             Sanisphere.Model.Basket.isNewItem(function(newBasket)
-    //             {
-    //                 if (! newBasket) {
-    //                     Sanisphere.Model.Basket.number(function(result)
-    //                     {
-    //                         var basketId = parseInt(result.value);
-    //                         loadBasketItem(params, basketId);
-    //                     });
-    //                 } else {
-    //                     loadBlankBasketItem(params);
-    //                 }
-    //             });
+        jQuery(document).ready(function () {
+            Sanisphere.Model.Pharmacy.setId(null);
+            // Sanisphere.isConnected(function(status)
+            // {
+            //     if (status) {
+            //         Sanisphere.loggedIn();
+            //         Sanisphere.Model.Basket.params(function(params)
+            //         {
+            //             Sanisphere.Model.Basket.isNewItem(function(newBasket)
+            //             {
+            //                 if (! newBasket) {
+            //                     Sanisphere.Model.Basket.number(function(result)
+            //                     {
+            //                         var basketId = parseInt(result.value);
+            //                         loadBasketItem(params, basketId);
+            //                     });
+            //                 } else {
+            //                     loadBlankBasketItem(params);
+            //                 }
+            //             });
 
-    //         });
-    //         shortcut.add("Ctrl+S", function()
-    //         {
-    //             jQuery("#formBasket").trigger("submit");
-    //         });
-    //         shortcut.add("Ctrl+C", function()
-    //         {
-    //             jQuery("#closeSession").trigger("click");
-    //         });
-    //         shortcut.add("Ctrl+R", function()
-    //         {
-    //             jQuery(".addReference").trigger("click");
-    //         });
-    //         shortcut.add("Ctrl+A", function()
-    //         {
-    //             jQuery(".addColumn").trigger("click");
-    //         });
-    //         shortcut.add("Ctrl+M", function()
-    //         {
-    //             jQuery("#selectOldBasket").trigger("click");
-    //         });
-    //         shortcut.add("Ctrl+P", function()
-    //         {
-    //             jQuery(".addParapharma").trigger("click");
-    //         });            
-    //     } else {
-    //         window.location.href = "login.html";
-    //     }
-    // }
-    // );
+            //         });
+            //         shortcut.add("Ctrl+S", function()
+            //         {
+            //             jQuery("#formBasket").trigger("submit");
+            //         });
+            //         shortcut.add("Ctrl+C", function()
+            //         {
+            //             jQuery("#closeSession").trigger("click");
+            //         });
+            //         shortcut.add("Ctrl+R", function()
+            //         {
+            //             jQuery(".addReference").trigger("click");
+            //         });
+            //         shortcut.add("Ctrl+A", function()
+            //         {
+            //             jQuery(".addColumn").trigger("click");
+            //         });
+            //         shortcut.add("Ctrl+M", function()
+            //         {
+            //             jQuery("#selectOldBasket").trigger("click");
+            //         });
+            //         shortcut.add("Ctrl+P", function()
+            //         {
+            //             jQuery(".addParapharma").trigger("click");
+            //         });            
+            //     } else {
+            //         window.location.href = "login.html";
+            //     }
+            // }
+            // );
 
-    jQuery(".editPharmacy").on("click", function (e) {
-        e.preventDefault();
-        Sanisphere.Model.Pharmacy.isEditAction(function()
-        {
-            Sanisphere.Model.Basket.params(function(params)
-            {
-                Sanisphere.Model.Session.find(params.session, function(session)
-                {
-                    if (session.rows.length > 0) {
-                        Sanisphere.Model.Pharmacy.setId(session.rows.item(0).pharmacy_id, function()
-                        {
-                            window.setTimeout(function()
-                            {
-                                window.location.href = "new_pharmacy.html";
-                            }, 500);
+            jQuery(".editPharmacy").on("click", function (e) {
+                e.preventDefault();
+                Sanisphere.Model.Pharmacy.isEditAction(function () {
+                    Sanisphere.Model.Basket.params(function (params) {
+                        Sanisphere.Model.Session.find(params.session, function (session) {
+                            if (session.rows.length > 0) {
+                                Sanisphere.Model.Pharmacy.setId(session.rows.item(0).pharmacy_id, function () {
+                                    window.setTimeout(function () {
+                                        window.location.href = "new_pharmacy.html";
+                                    }, 500);
+                                });
+                            }
                         });
-                    }
+                    });
+                }, true);
+            });
+
+            jQuery(".addColumn").on("click", function (e) {
+                e.preventDefault();
+                var numberOfItems = parseInt(jQuery("#numberOfItems").val());
+                for (var i = 0; i < 3; i++) {
+                    var prefix = "item_" + parseInt(numberOfItems + 1) + "_";
+                    var column = jQuery(".prescriptionModel").clone().removeClass("prescriptionModel");
+                    jQuery(".prescription .row").append(column.clone().css({ "display": "inline-block" }).prop("id", prefix));
+                    jQuery("#" + prefix).find("input, select, radio, textarea, checkbox").each(function () {
+                        jQuery(this).prop("name", prefix + jQuery(this).prop("name"));
+                    });
+                    jQuery(".prescription").scrollLeft(jQuery(".prescription .row .span3").length * jQuery(".prescription .row .span3:eq(0)").width());
+                    numberOfItems++;
+                }
+                jQuery("#numberOfItems").val(numberOfItems);
+                Sanisphere.Controller.Basket.initAutocomplete(function () {
+                    Sanisphere.Controller.Basket.itemEventListener(numberOfItems);
                 });
             });
-        }, true);
-    });
 
-    jQuery(".addColumn").on("click", function (e)
-    {
-        e.preventDefault();
-        var numberOfItems = parseInt(jQuery("#numberOfItems").val());
-        for(var i = 0; i < 3; i++) {
-            var prefix ="item_" + parseInt(numberOfItems + 1) + "_";
-            var column = jQuery(".prescriptionModel").clone().removeClass("prescriptionModel");
-            jQuery(".prescription .row").append(column.clone().css({"display":"inline-block"}).prop("id", prefix));
-            jQuery("#"+ prefix ).find("input, select, radio, textarea, checkbox").each(function()
-            {
-                jQuery(this).prop("name", prefix + jQuery(this).prop("name"));
+            // ---------------------------------------------------------------------
+            // Hide the basket when we add a new reference or parapharmacy product
+            // --------------------------------------------------------------------- 
+            jQuery("#modal-reference, #modal-review-reference, #modal-parapharma").on("show", function () {
+                jQuery("#formBasket").hide();
             });
-            jQuery(".prescription").scrollLeft(jQuery(".prescription .row .span3").length * jQuery(".prescription .row .span3:eq(0)").width());
-            numberOfItems++;
-        }
-        jQuery("#numberOfItems").val(numberOfItems);
-        Sanisphere.Controller.Basket.initAutocomplete(function()
-        {
-            Sanisphere.Controller.Basket.itemEventListener(numberOfItems);
-        });
-    });
 
-    // ---------------------------------------------------------------------
-    // Hide the basket when we add a new reference or parapharmacy product
-    // --------------------------------------------------------------------- 
-    jQuery("#modal-reference, #modal-review-reference, #modal-parapharma").on("show", function()
-    {
-        jQuery("#formBasket").hide();
-    });
-
-    jQuery("#modal-reference, #modal-review-reference, #modal-parapharma").on("hide", function()
-    {
-        jQuery("#formBasket").show();
-    });
-      
-
-    jQuery(".togglePatientData").on("click", function ()
-    {
-        jQuery(".blockPatient").toggle();
-    });
-
-    jQuery("#formBasket").on("submit", function(e)
-    {
-        e.preventDefault();
-        Sanisphere.Model.Basket.isNewItem(function()
-        {
-            saveBasket(function(data)
-            {
-                if (0 !== data.code) {
-                    bootbox.alert(data.message);
-                } else {
-                    window.setTimeout(function()
-                    {
-                        window.location.reload();
-                    }, 500);
-                }
+            jQuery("#modal-reference, #modal-review-reference, #modal-parapharma").on("hide", function () {
+                jQuery("#formBasket").show();
             });
-        }, true);
-    });
 
-    jQuery("#selectOldBasket").on("click", function(e)
-    {
-        e.preventDefault();
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.selectOldBasket({campaign : result.campaign, session : result.session}, function(data)
-            {
-                if (0 === data.code) {
-                    var baskets = jQuery.parseJSON(data.baskets);
-                    if (baskets !== null) {
-                        var tplSelectModal = '<option value="[[id]]"> Basket [[id]] (saved at [[created_at]])</option>';
-                        jQuery("#previousBasket").html('');
-                        jQuery.each(baskets, function(i, basket)
-                        {
-                            basket.created_at = Sanisphere.dateFormat("Y-m-d H:i:s", basket.created_at);
-                            var renderedPage = Mustache.to_html(tplSelectModal, basket);
-                            jQuery("#previousBasket").append(renderedPage);
-                        });
-                        jQuery("#modal-basket").modal();
-                    }
-                }
+
+            jQuery(".togglePatientData").on("click", function () {
+                jQuery(".blockPatient").toggle();
             });
-        });
-    });
 
-    jQuery("#reloadOldBasket").on("click", function(e)
-    {
-        e.preventDefault();
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.loadOldBasket(
-            {campaign : result.campaign, session : result.session, basket : jQuery("#previousBasket").val() },
-            function(data)
-            {
-                if (0 === data.code) {
-                    Sanisphere.Model.Basket.number(function()
-                    {
-                        Sanisphere.initScreen();
-                        Sanisphere.Controller.Basket.loadScreen(data.basket);
-                    }, data.basket.id);
-                } else {
-                    bootbox.alert(data.message);
-                }
-                jQuery("#modal-basket").modal('hide');
-            });
-        });
-    });
-
-    jQuery(".addReference").on("click", function(e)
-    {
-        e.preventDefault();
-        jQuery("#modal-reference #formNewReference input").each(function()
-        {
-            jQuery(this).val("");
-        });
-        Sanisphere.Controller.Basket.initAllAutocomplete();
-        jQuery("#modal-reference").modal();
-    });
-    
-
-    // ------------------------------------------------------------------
-    // Manage the button to add a new Parapharmacy reference 
-    // ------------------------------------------------------------------ 
-    jQuery(".addParapharma").on("click", function(e)
-    {
-        e.preventDefault();
-        jQuery("#modal-parapharma #formNewParapharmacy input").each(function()
-        {
-            jQuery(this).val("");
-        });
-        Sanisphere.Controller.Basket.initParapharmaAutocomplete();
-        jQuery("#modal-parapharma").modal();
-    });
-  
-    
-    jQuery("#closeSession").on("click", function(e)
-    {
-        e.preventDefault();
-        jQuery("#closeSessionButtons").show();
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.beforeCloseSession({campaign : result.campaign, session : result.session}, Sanisphere.Controller.Basket.afterBeforeCloseSession);
-        });
-    });
-
-    jQuery(".modal").delegate(".saveCompleted", "click", function(e)
-    {
-        e.preventDefault();
-        var me = this;
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.saveReference(
-                {mode : "complete", form : jQuery(me).data("form-id"), campaign : result.campaign, session : result.session},
-                function(data)
-                {
-                    Sanisphere.Model.Basket.isNewItem(function()
-                    {
-                        saveBasket(function()
-                        {
-                            if (0 === data.code) {
-                                if ("formNewReference" === data.form) {
-                                    jQuery("#modal-reference").modal("hide");
-                                } else if ("complete" === data.mode) {
-                                    jQuery("#" + data.form).hide("slow").remove();
-                                }
-                                bootbox.alert(data.message, function()
-                                {
-                                    window.setTimeout(function()
-                                    {
-                                        window.location.reload();
-                                    }, 500);
-                                });
-                            } else {
-                                bootbox.alert(data.message);
-                            }
-                        });
-                    }, false);
-                }
-            );
-        });
-    });
-
-    jQuery(".modal").delegate(".saveToBeCompleted", "click", function(e)
-    {
-        e.preventDefault();
-        var me = this;
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.saveReference(
-                {mode : "toBeCompleted", form : jQuery(me).data("form-id"), campaign : result.campaign, session : result.session},
-                function(data)
-                {
-                    Sanisphere.Model.Basket.isNewItem(function()
-                    {
-                        saveBasket(function()
-                        {
-                            if (0 === data.code) {
-                                if ("formNewReference" === data.form) {
-                                    jQuery("#modal-reference").modal("hide");
-                                } else if ("complete" === data.mode) {
-                                    jQuery("#" + data.form).hide("slow").remove();
-                                }
-                                bootbox.alert(data.message, function()
-                                {
-                                    window.setTimeout(function()
-                                    {
-                                        window.location.reload();
-                                    }, 500);
-                                });
-                            } else {
-                                bootbox.alert(data.message);
-                            }
-                        });
-                    }, false);
-                }
-            );
-        });
-    });
-    
-    jQuery(".modal").delegate(".saveParapharma", "click", function(e)
-    {
-        e.preventDefault();
-        var me = this;
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.saveParapharmacy(
-                {form : jQuery(me).data("form-id"), campaign : result.campaign, session : result.session},
-                function(data)
-                {
-                    Sanisphere.Model.Basket.isNewItem(function()
-                    {
-                        saveBasket(function()
-                        {
-                            if (0 === data.code) {
-                                if ("formNewReference" === data.form) {
-                                    jQuery("#modal-reference").modal("hide");
-                                } else if ("complete" === data.mode) {
-                                    jQuery("#" + data.form).hide("slow").remove();
-                                }
-                                bootbox.alert(data.message, function()
-                                {
-                                    window.setTimeout(function()
-                                    {
-                                        window.location.reload();
-                                    }, 500);
-                                });
-                            } else {
-                                bootbox.alert(data.message);
-                            }
-                        });
-                    }, false);
-                }
-            );
-        });
-    });    
-    
-    
-    
-
-    jQuery("#reviewReferences").on("click", function(e)
-    {
-        jQuery("#closeSessionButtons").hide();
-        e.preventDefault();
-        Sanisphere.Model.Basket.params(function(result)
-        {
-            Sanisphere.Controller.Basket.loadReference(
-                {campaign : result.campaign, session : result.session},
-                Sanisphere.Controller.Basket.renderReference
-            );
-        });
-    });
-
-    jQuery(".closeSession").on("click", function(e)
-    {
-        e.preventDefault();
-        bootbox.confirm("You are going to close the session. All data will be transmitted to the server and you won't be able to edit them again. Do you confirm", "No", "Yes", function(result)
-        {
-            if (true === result) {
-                Sanisphere.Model.Basket.params(function(result)
-                {
-                    Sanisphere.Controller.Basket.closeSession(
-                        {campaign : result.campaign, session : result.session},
-                        function()
-                        {
-                            jQuery("#modal-review-reference").modal("hide");
-                            window.setTimeout(function()
-                            {
-                                window.location.href = "observation_session.html";
+            jQuery("#formBasket").on("submit", function (e) {
+                e.preventDefault();
+                Sanisphere.Model.Basket.isNewItem(function () {
+                    saveBasket(function (data) {
+                        if (0 !== data.code) {
+                            bootbox.alert(data.message);
+                        } else {
+                            window.setTimeout(function () {
+                                window.location.reload();
                             }, 500);
+                        }
+                    });
+                }, true);
+            });
+
+            jQuery("#selectOldBasket").on("click", function (e) {
+                e.preventDefault();
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.selectOldBasket({ campaign: result.campaign, session: result.session }, function (data) {
+                        if (0 === data.code) {
+                            var baskets = jQuery.parseJSON(data.baskets);
+                            if (baskets !== null) {
+                                var tplSelectModal = '<option value="[[id]]"> Basket [[id]] (saved at [[created_at]])</option>';
+                                jQuery("#previousBasket").html('');
+                                jQuery.each(baskets, function (i, basket) {
+                                    basket.created_at = Sanisphere.dateFormat("Y-m-d H:i:s", basket.created_at);
+                                    var renderedPage = Mustache.to_html(tplSelectModal, basket);
+                                    jQuery("#previousBasket").append(renderedPage);
+                                });
+                                jQuery("#modal-basket").modal();
+                            }
+                        }
+                    });
+                });
+            });
+
+            jQuery("#reloadOldBasket").on("click", function (e) {
+                e.preventDefault();
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.loadOldBasket(
+                        { campaign: result.campaign, session: result.session, basket: jQuery("#previousBasket").val() },
+                        function (data) {
+                            if (0 === data.code) {
+                                Sanisphere.Model.Basket.number(function () {
+                                    Sanisphere.initScreen();
+                                    Sanisphere.Controller.Basket.loadScreen(data.basket);
+                                }, data.basket.id);
+                            } else {
+                                bootbox.alert(data.message);
+                            }
+                            jQuery("#modal-basket").modal('hide');
+                        });
+                });
+            });
+
+            jQuery(".addReference").on("click", function (e) {
+                e.preventDefault();
+                jQuery("#modal-reference #formNewReference input").each(function () {
+                    jQuery(this).val("");
+                });
+                Sanisphere.Controller.Basket.initAllAutocomplete();
+                jQuery("#modal-reference").modal();
+            });
+
+
+            // ------------------------------------------------------------------
+            // Manage the button to add a new Parapharmacy reference 
+            // ------------------------------------------------------------------ 
+            jQuery(".addParapharma").on("click", function (e) {
+                e.preventDefault();
+                jQuery("#modal-parapharma #formNewParapharmacy input").each(function () {
+                    jQuery(this).val("");
+                });
+                Sanisphere.Controller.Basket.initParapharmaAutocomplete();
+                jQuery("#modal-parapharma").modal();
+            });
+
+
+            jQuery("#closeSession").on("click", function (e) {
+                e.preventDefault();
+                jQuery("#closeSessionButtons").show();
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.beforeCloseSession({ campaign: result.campaign, session: result.session }, Sanisphere.Controller.Basket.afterBeforeCloseSession);
+                });
+            });
+
+            jQuery(".modal").delegate(".saveCompleted", "click", function (e) {
+                e.preventDefault();
+                var me = this;
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.saveReference(
+                        { mode: "complete", form: jQuery(me).data("form-id"), campaign: result.campaign, session: result.session },
+                        function (data) {
+                            Sanisphere.Model.Basket.isNewItem(function () {
+                                saveBasket(function () {
+                                    if (0 === data.code) {
+                                        if ("formNewReference" === data.form) {
+                                            jQuery("#modal-reference").modal("hide");
+                                        } else if ("complete" === data.mode) {
+                                            jQuery("#" + data.form).hide("slow").remove();
+                                        }
+                                        bootbox.alert(data.message, function () {
+                                            window.setTimeout(function () {
+                                                window.location.reload();
+                                            }, 500);
+                                        });
+                                    } else {
+                                        bootbox.alert(data.message);
+                                    }
+                                });
+                            }, false);
                         }
                     );
                 });
-            }
-        });
-    });
-
-    function saveBasket(callback)
-    {
-        var patientInfosComplete = true;
-        var displayed = true;
-        if ("none" === jQuery(".blockPatient").css("display")) {
-            displayed = false;
-        }
-        jQuery('[name^="patient_"]').filter("select").each(function()
-        {
-            if (0 === jQuery(this).val().length || "Not_answered" === jQuery(this).val() || "Not answered" === jQuery(this).val()) {
-                patientInfosComplete = false;
-            }
-        });
-        jQuery('[name^="patient_"]').filter("input").each(function()
-        {
-            if (0 === jQuery(this).val().length) {
-                patientInfosComplete = false;
-            }
-        });
-        if (false === patientInfosComplete) {
-            bootbox.alert("Reminder : Patient informations are not completed");
-        } else {
-            Sanisphere.Controller.Basket.save(jQuery("#formBasket").serializeArray(), callback);
-        }
-    }
-
-    function loadBasketItem(params, basketId)
-    {
-        Sanisphere.Controller.Basket.initScreen({"campaign": params.campaign, "session": params.session}, function(response)
-        {
-            if (null !== response) {
-                if (0 !== response.code) {
-                    bootbox.alert(response.message);
-                } else {
-                    jQuery("#basket_1").html(response.basket1);
-                    jQuery("#basket_2").html(response.basket2);
-                    if ("undefined" !== typeof response.patient) {
-                        jQuery("#patientData").html(response.patient);
-                    } else {
-                        jQuery(".togglePatientData").remove();
-                        jQuery(".blockPatient").remove();
-                    }                    
-                    // -----------------------------------------------------
-                    // Remove the button Add Parapharma if we do not manage
-                    // -----------------------------------------------------
-                    if ("undefined" === typeof response.newParapharmacy) {
-                        jQuery(".addParapharma").remove();
-                    } else {
-                        jQuery("#formNewParapharmacy").html(response.newParapharmacy); 
-                    }                                                          
-                    jQuery("#formNewReference").html(response.newReference);
-
-                }
-            }
-            Sanisphere.Controller.Basket.loadOldBasket(
-            {campaign : params.campaign, session : params.session, basket : basketId },
-            function(data)
-            {
-                if (0 === data.code) {
-                    Sanisphere.Model.Basket.number(function()
-                    {
-                        Sanisphere.Controller.Basket.loadScreen(data.basket);
-                    }, data.basket.id);
-                } else {
-                    bootbox.alert(data.message);
-                }
-
-                jQuery("#modal-basket").modal('hide');
             });
-        });
-    };
 
-    function loadBlankBasketItem(params)
-    {
-        Sanisphere.Controller.Basket.initScreen({"campaign": params.campaign, "session": params.session}, function(response)
-        {
-            if (null !== response) {
-                if (0 !== response.code) {
-                    bootbox.alert(response.message);
-                } else {
-                    jQuery("#basket_1").html(response.basket1);
-                    jQuery("#basket_2").html(response.basket2);
-                    if ("undefined" !== typeof response.patient) {
-                        jQuery("#patientData").html(response.patient);
-                    } else {
-                        jQuery(".togglePatientData").remove();
-                        jQuery(".blockPatient").remove();
+            jQuery(".modal").delegate(".saveToBeCompleted", "click", function (e) {
+                e.preventDefault();
+                var me = this;
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.saveReference(
+                        { mode: "toBeCompleted", form: jQuery(me).data("form-id"), campaign: result.campaign, session: result.session },
+                        function (data) {
+                            Sanisphere.Model.Basket.isNewItem(function () {
+                                saveBasket(function () {
+                                    if (0 === data.code) {
+                                        if ("formNewReference" === data.form) {
+                                            jQuery("#modal-reference").modal("hide");
+                                        } else if ("complete" === data.mode) {
+                                            jQuery("#" + data.form).hide("slow").remove();
+                                        }
+                                        bootbox.alert(data.message, function () {
+                                            window.setTimeout(function () {
+                                                window.location.reload();
+                                            }, 500);
+                                        });
+                                    } else {
+                                        bootbox.alert(data.message);
+                                    }
+                                });
+                            }, false);
+                        }
+                    );
+                });
+            });
+
+            jQuery(".modal").delegate(".saveParapharma", "click", function (e) {
+                e.preventDefault();
+                var me = this;
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.saveParapharmacy(
+                        { form: jQuery(me).data("form-id"), campaign: result.campaign, session: result.session },
+                        function (data) {
+                            Sanisphere.Model.Basket.isNewItem(function () {
+                                saveBasket(function () {
+                                    if (0 === data.code) {
+                                        if ("formNewReference" === data.form) {
+                                            jQuery("#modal-reference").modal("hide");
+                                        } else if ("complete" === data.mode) {
+                                            jQuery("#" + data.form).hide("slow").remove();
+                                        }
+                                        bootbox.alert(data.message, function () {
+                                            window.setTimeout(function () {
+                                                window.location.reload();
+                                            }, 500);
+                                        });
+                                    } else {
+                                        bootbox.alert(data.message);
+                                    }
+                                });
+                            }, false);
+                        }
+                    );
+                });
+            });
+
+
+
+
+            jQuery("#reviewReferences").on("click", function (e) {
+                jQuery("#closeSessionButtons").hide();
+                e.preventDefault();
+                Sanisphere.Model.Basket.params(function (result) {
+                    Sanisphere.Controller.Basket.loadReference(
+                        { campaign: result.campaign, session: result.session },
+                        Sanisphere.Controller.Basket.renderReference
+                    );
+                });
+            });
+
+            jQuery(".closeSession").on("click", function (e) {
+                e.preventDefault();
+                bootbox.confirm("You are going to close the session. All data will be transmitted to the server and you won't be able to edit them again. Do you confirm", "No", "Yes", function (result) {
+                    if (true === result) {
+                        Sanisphere.Model.Basket.params(function (result) {
+                            Sanisphere.Controller.Basket.closeSession(
+                                { campaign: result.campaign, session: result.session },
+                                function () {
+                                    jQuery("#modal-review-reference").modal("hide");
+                                    window.setTimeout(function () {
+                                        window.location.href = "observation_session.html";
+                                    }, 500);
+                                }
+                            );
+                        });
                     }
-                    // -----------------------------------------------------
-                    // Remove the button Add Parapharma if we do not manage
-                    // -----------------------------------------------------
-                    if ("undefined" === typeof response.newParapharmacy) {
-                        jQuery(".addParapharma").remove();
-                    } else {
-                        jQuery("#formNewParapharmacy").html(response.newParapharmacy); 
-                    }                     
-                    jQuery("#formNewReference").html(response.newReference);
+                });
+            });
+
+            function saveBasket(callback) {
+                var patientInfosComplete = true;
+                var displayed = true;
+                if ("none" === jQuery(".blockPatient").css("display")) {
+                    displayed = false;
+                }
+                jQuery('[name^="patient_"]').filter("select").each(function () {
+                    if (0 === jQuery(this).val().length || "Not_answered" === jQuery(this).val() || "Not answered" === jQuery(this).val()) {
+                        patientInfosComplete = false;
+                    }
+                });
+                jQuery('[name^="patient_"]').filter("input").each(function () {
+                    if (0 === jQuery(this).val().length) {
+                        patientInfosComplete = false;
+                    }
+                });
+                if (false === patientInfosComplete) {
+                    bootbox.alert("Reminder : Patient informations are not completed");
+                } else {
+                    Sanisphere.Controller.Basket.save(jQuery("#formBasket").serializeArray(), callback);
                 }
             }
-            Sanisphere.Controller.Basket.loadScreen();
-        }, true);
-    }
-    
-});
-</script>
-    </body>
+
+            function loadBasketItem(params, basketId) {
+                Sanisphere.Controller.Basket.initScreen({ "campaign": params.campaign, "session": params.session }, function (response) {
+                    if (null !== response) {
+                        if (0 !== response.code) {
+                            bootbox.alert(response.message);
+                        } else {
+                            jQuery("#basket_1").html(response.basket1);
+                            jQuery("#basket_2").html(response.basket2);
+                            if ("undefined" !== typeof response.patient) {
+                                jQuery("#patientData").html(response.patient);
+                            } else {
+                                jQuery(".togglePatientData").remove();
+                                jQuery(".blockPatient").remove();
+                            }
+                            // -----------------------------------------------------
+                            // Remove the button Add Parapharma if we do not manage
+                            // -----------------------------------------------------
+                            if ("undefined" === typeof response.newParapharmacy) {
+                                jQuery(".addParapharma").remove();
+                            } else {
+                                jQuery("#formNewParapharmacy").html(response.newParapharmacy);
+                            }
+                            jQuery("#formNewReference").html(response.newReference);
+
+                        }
+                    }
+                    Sanisphere.Controller.Basket.loadOldBasket(
+                        { campaign: params.campaign, session: params.session, basket: basketId },
+                        function (data) {
+                            if (0 === data.code) {
+                                Sanisphere.Model.Basket.number(function () {
+                                    Sanisphere.Controller.Basket.loadScreen(data.basket);
+                                }, data.basket.id);
+                            } else {
+                                bootbox.alert(data.message);
+                            }
+
+                            jQuery("#modal-basket").modal('hide');
+                        });
+                });
+            };
+
+            function loadBlankBasketItem(params) {
+                Sanisphere.Controller.Basket.initScreen({ "campaign": params.campaign, "session": params.session }, function (response) {
+                    if (null !== response) {
+                        if (0 !== response.code) {
+                            bootbox.alert(response.message);
+                        } else {
+                            jQuery("#basket_1").html(response.basket1);
+                            jQuery("#basket_2").html(response.basket2);
+                            if ("undefined" !== typeof response.patient) {
+                                jQuery("#patientData").html(response.patient);
+                            } else {
+                                jQuery(".togglePatientData").remove();
+                                jQuery(".blockPatient").remove();
+                            }
+                            // -----------------------------------------------------
+                            // Remove the button Add Parapharma if we do not manage
+                            // -----------------------------------------------------
+                            if ("undefined" === typeof response.newParapharmacy) {
+                                jQuery(".addParapharma").remove();
+                            } else {
+                                jQuery("#formNewParapharmacy").html(response.newParapharmacy);
+                            }
+                            jQuery("#formNewReference").html(response.newReference);
+                        }
+                    }
+                    Sanisphere.Controller.Basket.loadScreen();
+                }, true);
+            }
+
+        });
+    </script>
+</body>
+
 </html>
