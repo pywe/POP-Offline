@@ -97,6 +97,7 @@
 
             </div>
             <h2>Drugs</h2>
+            <h3>Drug 1</h3>
             <div class="control-group">
                 <label class="control-label" for="drug_initial_request">Initial request
                     &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10"
@@ -282,10 +283,13 @@
                 </div>
             </div>
 
-
+<div id="newdrug">
+</div>
         </form>
         <div class="span12">
             <div class="form-actions">
+                <button onclick="addDrug()" type="button" class="btn btn-success" id="addDrug"><i
+                    class="icon-download-alt icon-white"></i><u>A</u>dd drug</button>
                 <a class="btn" id="selectOldBasket"><i class="icon-edit"></i><u>M</u>odify a basket</a>
                 <a class="btn" id="reviewReferences"><i class="icon-list-alt"></i>Reference to be completed</a>
                 <button type="submit" class="btn btn-success" id="saveBasket"><i
@@ -444,6 +448,7 @@
     <script src="js/jquery-2.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/campaign.js"></script>
+    <script src="js/app.js"></script>
     
 
 
