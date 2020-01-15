@@ -42,9 +42,8 @@ request.onupgradeneeded = function(event) {
 
 
 function addDrug() {
-  var drugnum = 2;
-  document.getElementById('newdrug').innerHTML += "<h3>Drug " + drugnum + "</h3>";
-  document.getElementById('newdrug').innerHTML += `<div class="control-group">
+  
+  document.getElementById('newdrug').innerHTML += `<h3>New Drug</h3><div class="control-group">
   <label class="control-label" for="drug_initial_request">Initial request
       &nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10" height="10"
           alt="(Who started the request?)" title="Who started the request?"></label>
@@ -231,5 +230,5 @@ function addDrug() {
   
   
   </form>`;
-  drugnum = drugnum + 1
-}
+  
+};
