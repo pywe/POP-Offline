@@ -36,6 +36,7 @@
 	** Carousel
 	** Alignments & Background Styles
 	** Nav Tabs
+	** input-hint
 	** Responsive
 	** Alerts Styles
 	** Card Styles
@@ -169,6 +170,15 @@ abbr[data-original-title], abbr[title] {
 	cursor: help;
 	border-bottom: 0;
 }
+
+.input-hint {
+	display: block;
+	font-size: 80%;
+	line-height: 1.4;
+	margin-top: 0.15em;
+	padding-left: 0.25em;
+  }
+
 address {
 	margin-bottom: 1rem;
 	font-style: normal;

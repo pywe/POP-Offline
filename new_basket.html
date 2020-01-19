@@ -2,6 +2,13 @@
 <html>
 
 <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="google-site-verification" content="">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
 	<!-- Title -->
 	<title>POP | Ghana</title>
 
@@ -113,11 +120,12 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<label class="form-label text-dark">Initial request
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(Who started the request?)"
-										title="Who started the request?"></label>
-								<select class="form-control custom-select select2-show-search"
+								<label class="form-label text-dark">Initial request</label>
+								<p id="initial-req-hint" class="input-hint">
+									Who started the request?
+								</p>
+								<select aria-describedby="initial-req-hint"
+									class="form-control custom-select select2-show-search"
 									data-placeholder="Choose one (with searchbox)">
 									<option value="" selected>---------</option>
 									<option value="brand patient">brand patient</option>
@@ -127,19 +135,20 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Drug sold
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(Brand name of drug that has been sold)"
-										title="Brand name of drug that has been sold"></label>
-								<input type="text" class="form-control"
-									placeholder="Brand name of drug that has been sold" maxlength="200" required>
+								<label class="form-label text-dark">Drug sold</label>
+								<p id="drug-sold-hint" class="input-hint">
+									Brand name of drug that has been sold?
+								</p>
+								<input type="text" aria-describedby="drug-sold-hint" class="form-control"
+									maxlength="200" required>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Drug Sale Driver
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(Who makes the final selection for the purchased product?)"
-										title="Who makes the final selection for the purchased product?"></label>
-								<select class="form-control custom-select select2-show-search"
+								<label class="form-label text-dark">Drug Sale Driver</label>
+								<p id="drug-sale-driver-hint" class="input-hint">
+									Who makes the final selection for the purchased product?
+								</p>
+								<select aria-describedby="drug-sale-driver-hint"
+									class="form-control custom-select select2-show-search"
 									data-placeholder="Choose one (with searchbox)">
 									<option value="" selected>---------</option>
 									<option value="Patient">Patient</option>
@@ -148,43 +157,48 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Switched
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(Was there a switch?)" title="Was there a switch?"></label>
+								<label class="form-label text-dark">Switched</label>
+								<p id="switched-hint" class="input-hint">
+									Was there a switch?
+								</p>
 								<div class="form-control">
-									<!-- <input type="checkbox" required> -->
-									<!-- the new class added -->
 									<label class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
+										<input type="checkbox" class="custom-control-input"
+											aria-describedby="switched-hint" name="checkbox" value="checkbox">
 										<span class="custom-control-label"></span>
 									</label>
 
 								</div>
-								
+
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Leaked&nbsp;<img src="images/icon-unknown.svg"
-										class="help help-tooltip" width="10" height="10" alt="(Was there a leak?)"
-										title="Was there a leak?"></label>
+								<label class="form-label text-dark">Leaked</label>
+								<p id="leaked-hint" class="input-hint">
+									Was there a leak?
+								</p>
 								<div class="form-control">
-									<input type="checkbox" required>
+									<label class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" ame="checkbox"
+											value="checkbox" required>
+										<span class="custom-control-label"></span>
+									</label>
 
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Product switched or leaked
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(What product was switched or leaked?)"
-										title="What product was switched or leaked?"></label>
-								<input type="text" class="form-control"
-									placeholder="What product was switched or leaked?" maxlength="200" required>
+								<label class="form-label text-dark">Product switched or leaked</label>
+								<p id="switchleaked-hint" class="input-hint">
+									What product was switched or leaked?
+								</p>
+								<input type="text" aria-describedby="switchedleaked-hint" class="form-control"
+									maxlength="200" required>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Reason for switch or leak
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(Why was there a switch or a leak?)"
-										title="Why was there a switch or a leak?"></label>
-								<select class="form-control custom-select select2-show-search"
+								<label class="form-label text-dark">Reason for switch or leak</label>
+										<p id="switchleaked-reason-hint" class="input-hint">
+											Why was there a switch or a leak?
+										</p>
+								<select class="form-control custom-select select2-show-search" aria-describedby="switchleaked-reason-hint"
 									data-placeholder="Choose one (with searchbox)">
 									<option value="" selected>---------</option>
 									<option value="Not available">Not available</option>
@@ -194,11 +208,12 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Form sold
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(What form of drug was sold? liquid,tablet)"
-										title="What form of drug was sold? liquid,tablet"></label>
-								<select class="form-control custom-select select2-show-search"
+								<label class="form-label text-dark">Form sold</label>
+										<p id="form-sold-hint" class="input-hint">
+											What form of drug was sold? liquid,tablet
+										</p>
+						
+								<select class="form-control custom-select select2-show-search" aria-describedby="form-sold-hint"
 									data-placeholder="Choose one (with searchbox)">
 									<option value="" selected>---------</option>
 									<option value="3">Capsule</option>
@@ -220,11 +235,11 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label class="form-label text-dark">Division
-									&nbsp;<img src="images/icon-unknown.svg" class="help help-tooltip" width="10"
-										height="10" alt="(Was the whole box sold? How was it divided?)"
-										title="Was the whole box sold? How was it divided?"></label>
-								<select class="form-control custom-select select2-show-search"
+								<label class="form-label text-dark">Division</label>
+										<p id="division-hint" class="input-hint">
+											Was the whole box sold? How was it divided?
+										</p>
+								<select aria-describedby="division-hint" class="form-control custom-select select2-show-search"
 									data-placeholder="Choose one (with searchbox)">
 									<option value="" selected>---------</option>
 									<option value="unit">unit</option>
@@ -276,8 +291,7 @@
 	</script>
 
 	<!-- Notification -->
-	<a href="#" id="notification"><span class="notification-text">Notifications</span><i
-			class="fa fa-bell"></i></a>
+	<a href="#" id="notification"><span class="notification-text">Notifications</span><i class="fa fa-bell"></i></a>
 
 	<!-- Back to top -->
 	<a href="#top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
